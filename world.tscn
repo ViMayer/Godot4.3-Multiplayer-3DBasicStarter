@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://ga4brol6kes6"]
+[gd_scene load_steps=20 format=3 uid="uid://ga4brol6kes6"]
 
 [ext_resource type="Shader" uid="uid://dtq8vkrpvuqfj" path="res://gridmaterial.tres" id="1_78mpy"]
+[ext_resource type="Script" path="res://world.gd" id="1_pyr5d"]
 [ext_resource type="PackedScene" uid="uid://doh0w0if3r85g" path="res://character.tscn" id="2_7bd7c"]
 [ext_resource type="Script" path="res://animation.gd" id="3_w4bpu"]
 
@@ -66,7 +67,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-1.25, 3.75, 9.05), Vector3(2.25, 3.75, 9.05), Vector3(-1.25, 3.75, 9.05)]
+"values": [Vector3(-1.25, 1.647, 9.05), Vector3(2.25, 1.647, 9.05), Vector3(-1.25, 1.647, 9.05)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vyo8q"]
@@ -91,9 +92,8 @@ size = Vector3(2.5, 0.5, 3)
 size = Vector3(3, 0.5, 3)
 
 [node name="World" type="Node3D"]
-
-[node name="character" parent="." instance=ExtResource("2_7bd7c")]
-transform = Transform3D(-1, 2.98023e-08, -8.74228e-08, 2.98023e-08, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+script = ExtResource("1_pyr5d")
+player_scene = ExtResource("2_7bd7c")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_g3bud")
@@ -103,7 +103,7 @@ transform = Transform3D(0.866025, 0.25, -0.433013, 0, 0.866026, 0.5, 0.5, -0.433
 shadow_enabled = true
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(-0.259511, 0.95431, 0.148144, 0.0268235, 0.160462, -0.986678, -0.965367, -0.25208, -0.0672397, -3.5, 1.5, -0.5)
+transform = Transform3D(-0.259511, 0.95431, 0.148144, 0.0268235, 0.160462, -0.986678, -0.965367, -0.25208, -0.0672397, -3.5, -0.608662, -0.5)
 collision_layer = 4
 collision_mask = 7
 mass = 0.1
@@ -122,6 +122,7 @@ material = SubResource("StandardMaterial3D_13kt2")
 shape = SubResource("BoxShape3D_dmhl4")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.10866, 0)
 use_collision = true
 collision_mask = 7
 size = Vector3(30, 2, 30)
@@ -147,14 +148,14 @@ size = Vector3(3, 2, 0.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationBody3D3")
-playback_process_mode = 0
+callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_vyo8q")
 }
 script = ExtResource("3_w4bpu")
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -7, 2, -7)
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -7, -0.108662, -7)
 billboard = 2
 alpha_cut = 1
 text = "Credits:
@@ -163,14 +164,14 @@ https://www.youtube.com/watch?v=n8D3vEx7NAE
 https://godotshaders.com/shader/world-coordinates-grid-bw-shader/"
 
 [node name="Label3D2" type="Label3D" parent="."]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 2, -7)
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, -0.108662, -7)
 billboard = 2
 alpha_cut = 1
 text = "Project description:
 It is a demo, so you can start your own projects with it."
 
 [node name="Label3D3" type="Label3D" parent="."]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 6.5, 2, -7)
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 6.5, -0.108662, -7)
 billboard = 2
 alpha_cut = 1
 text = "Notes:
@@ -181,7 +182,7 @@ And you have to manually change size of each other.
 It can be done by script so in the next version of it i will iomplement the script."
 
 [node name="StaticProps" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 5.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, -2.10866, 5.5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="StaticProps"]
 transform = Transform3D(-2.33351e-15, 1, -4.37114e-08, -0.422618, -3.9616e-08, -0.906308, -0.906308, 1.84732e-08, 0.422618, -8, 2.3, -1)
@@ -310,7 +311,78 @@ transform = Transform3D(1, -8.47033e-22, 2.98023e-08, 0, 1, 3.72529e-09, 0, 3.72
 size = Vector3(3, 0.5, 3)
 
 [node name="Label3D4" type="Label3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 7.74062, 2.3, 8.8)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 7.74062, 0.191338, 8.8)
 alpha_cut = 2
 text = "Finish"
 font_size = 64
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.5
+offset_top = -33.0
+offset_right = 25.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Host" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "HOST"
+
+[node name="Join" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "JOIN"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelHostIP" type="Label" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+text = "HOST IP:"
+horizontal_alignment = 1
+
+[node name="InputHostIP" type="TextEdit" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+scroll_fit_content_height = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelHostPort" type="Label" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+text = " HOST PORT: "
+horizontal_alignment = 1
+
+[node name="InputHostPort" type="TextEdit" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+scroll_fit_content_height = true
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://character.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="text_changed" from="CanvasLayer/Control/VBoxContainer/HBoxContainer/InputHostIP" to="." method="_on_text_edit_text_changed"]
+[connection signal="text_changed" from="CanvasLayer/Control/VBoxContainer/HBoxContainer2/InputHostPort" to="." method="_on_input_host_port_text_changed"]

@@ -87,7 +87,7 @@ render_mode blend_mix, depth_draw_always, cull_back, diffuse_lambert, specular_s
 
 
 // Varyings
-varying vec3 world_position;
+varying vec3 var_world_position;
 
 uniform int grid_size;
 uniform vec4 Color_1 : source_color;
@@ -101,14 +101,14 @@ void vertex() {
 
 
 // VaryingSetter:2
-	world_position = n_out3p0;
+	var_world_position = n_out3p0;
 
 
 }
 
 void fragment() {
 // VaryingGetter:13
-	vec3 n_out13p0 = world_position;
+	vec3 n_out13p0 = var_world_position;
 
 
 // IntParameter:4

@@ -1,5 +1,7 @@
 # Godot4-Basic3Dstarter
- Godot 4 template, with shader, prototyping, animation, smooth character controller
+ Godot 4 template, with shader, prototyping, animation and smooth character controller.
+ Along with a default localhost multiplayer setting!
+
 
 ### Download https://godotengine.org/asset-library/asset/2242
 
@@ -23,3 +25,5 @@ https://github.com/TechnoLukas/Godot4-Basic3dStarter/assets/110934679/3e589a38-f
 
 https://github.com/TechnoLukas/Godot4-Basic3dStarter/assets/110934679/d2694ccc-d920-4926-9b7c-b87e9e7b1dc9
 
+# Multiplayer by:
+https://github.com/ViMayer/
